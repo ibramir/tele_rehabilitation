@@ -24,7 +24,7 @@ class MockExerciseRepository extends ExerciseRepository {
       Exercise('5', today.subtract(const Duration(days: 3)), 'Left Leg Stretch',
           10, 5),
       Exercise('6', today.subtract(const Duration(days: 4)),
-          'Right Leg Stretch', 6, 10),
+          'Right Leg Stretch', 10, 6),
       Exercise('7', today.subtract(const Duration(days: 5)), 'Left Leg Stretch',
           10, 7),
       Exercise('8', today.subtract(const Duration(days: 6)),
