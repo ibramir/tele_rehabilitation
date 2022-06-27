@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/utils/exercise_controller.dart';
-import 'package:tele_rehabilitation/widgets/checklist_card.dart';
+import 'package:tele_rehabilitation/utils/helpers.dart';
+import 'package:tele_rehabilitation/utils/widget_factory.dart';
+import 'package:tele_rehabilitation/widgets/checklist.dart';
 
 import '../model/exercise.dart';
 
@@ -14,10 +16,13 @@ class ExercisesScreen extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(16),
       child: FutureBuilder(
-        future: _controller.getDayExercises(),
-        builder: (BuildContext context, AsyncSnapshot<List<Exercise>> snapshot) {
+        future: _controller.getAllExercises(),
+        builder:
+            (BuildContext context, AsyncSnapshot<List<Exercise>> snapshot) {
           if (snapshot.hasData) {
-            return Column(
+            DateTime today = DateTime.now();
+            return SingleChildScrollView(
+                child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const Text('Therapy', textScaleFactor: 1.3),
@@ -46,15 +51,19 @@ class ExercisesScreen extends StatelessWidget {
                       ],
                     )),
                 const Text('Checklist', textScaleFactor: 1.3),
-                ChecklistCard(exercises: snapshot.data ?? [])
+                WidgetFactory.card(
+                    child: Checklist(
+                        exercises: (snapshot.data ?? [])
+                            .where((e) => e.date.isSameDate(today))
+                            .toList())),
+                const Text('History', textScaleFactor: 1.3)
               ],
-            );
+            ));
           }
 
           return const Center(
             child: CircularProgressIndicator(),
           );
-
         },
       ),
     );

@@ -34,6 +34,7 @@ class Histogram extends StatelessWidget {
         indexes[dateFormat.format(e.date)] = ret.length - 1;
       }
     }
+    ret.sort((a, b) => a.date.compareTo(b.date));
     return ret;
   }
 
