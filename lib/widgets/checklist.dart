@@ -18,8 +18,11 @@ class Checklist extends StatelessWidget {
       done = 1;
       for (final exercise in exercises) {
         double value = exercise.done / exercise.count;
+        if (value > 1.0) {
+          value = 1.0;
+        }
         progress[exercise.id] = value;
-        if (value != 1.0) done = 0;
+        if (value < 1.0) done = 0;
       }
     }
 

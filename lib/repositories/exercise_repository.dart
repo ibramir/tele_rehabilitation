@@ -6,4 +6,6 @@ abstract class ExerciseRepository {
   Future<void> update(Exercise exercise);
 
   Future<List<Exercise>> getAllExercises();
+
+  Future<List<Exercise>> getExercises(DateTime startDate, DateTime endDate);
 }
