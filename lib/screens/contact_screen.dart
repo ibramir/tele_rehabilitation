@@ -11,16 +11,23 @@ class ContactScreen extends StatelessWidget {
           preferredSize: Size.fromHeight(120),
           child: AppBar(
             centerTitle: true,
-            flexibleSpace: ClipRRect(
-              borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(30),
-                  bottomLeft: Radius.circular(30)),
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: false,
+              title: Text(
+                'Contact Doctor',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'proxima_ssv',
+                  fontSize: 35,
+                ),
+              ),
+              background: Stack(
+                fit: StackFit.expand,
+                children: <Widget>[
+                  Image(
                       image: AssetImage('assets/appbar_background.png'),
                       fit: BoxFit.fill),
-                ),
+                ],
               ),
             ),
             title: Text(
@@ -35,22 +42,60 @@ class ContactScreen extends StatelessWidget {
           ),
         ),
         drawer: MainDrawer(),
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    width: 500,
-                    height: 300,
-                    color: Colors.white,
+        body: Center(
+            child: Container(
+                height: 300,
+                width: 500,
+                margin: EdgeInsets.all(30),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
                   ),
                 ),
-              ),
-            ),
-          ],
-        ));
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                    ),
+                    Text(
+                      'Dr. Jane Doe',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'proxima_ssv',
+                          fontSize: 25),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                    ),
+                    Text(
+                      'Phone Number  XXXXXXXXXXX',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'proxima_ssv',
+                          fontSize: 15),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                    ),
+                    Text(
+                      'Landline Number  XXXXXXXXXXX',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'proxima_ssv',
+                          fontSize: 15),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                    ),
+                    Text(
+                      'Location XXXXXXXXXXXX',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'proxima_ssv',
+                          fontSize: 15),
+                    ),
+                  ],
+                ))));
   }
 }
