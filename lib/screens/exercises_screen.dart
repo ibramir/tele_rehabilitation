@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/utils/exercise_controller.dart';
 import 'package:tele_rehabilitation/widgets/checklist_card.dart';
-
+import 'package:tele_rehabilitation/exercises/ExerciseView.dart';
+import 'package:tele_rehabilitation/exercises/TrialView.dart';
 import '../model/exercise.dart';
 
 class ExercisesScreen extends StatelessWidget {
@@ -38,7 +39,12 @@ class ExercisesScreen extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.all(8),
                           child: GestureDetector(
-                            onTap: () => {},
+                            onTap: () => {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const ExerciseView() ),
+                              )
+                            },
                             child: Image.asset('assets/exercise-icon4.png',
                                 fit: BoxFit.fill),
                           ),

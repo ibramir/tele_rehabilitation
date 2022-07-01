@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tele_rehabilitation.tele_rehabilitation">
+    <uses-permission android:name="android.permission.CAMERA"/>
    <application
         android:label="tele_rehabilitation"
         android:name="${applicationName}"
