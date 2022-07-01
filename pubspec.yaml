@@ -41,8 +41,13 @@ dependencies:
   intl: ^0.17.0
   path_provider: ^2.0.11
   shared_preferences: ^2.0.15
+  flame: 1.1.0
+  flame_audio: 1.0.1
+  hive: 2.1.0
 
 dev_dependencies:
+  hive_generator: 1.1.2
+  build_runner: 2.1.8
   flutter_test:
     sdk: flutter
 
@@ -70,6 +75,11 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/
+    - assets/images/
+    - assets/images/parallax/
+    - assets/images/blue_Bird/
+    - assets/images/Bat/
+    - assets/audio/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -82,10 +92,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Audiowide
+      fonts:
+        - asset: assets/fonts/Audiowide/Audiowide-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
