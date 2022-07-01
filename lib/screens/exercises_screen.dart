@@ -4,7 +4,7 @@ import 'package:tele_rehabilitation/utils/widget_factory.dart';
 import 'package:tele_rehabilitation/widgets/checklist.dart';
 import 'package:tele_rehabilitation/widgets/default_app_bar.dart';
 import 'package:tele_rehabilitation/widgets/main_drawer.dart';
-
+import 'package:tele_rehabilitation/exercises/ExerciseView.dart';
 import '../model/exercise.dart';
 
 class ExercisesScreen extends StatelessWidget {
@@ -64,7 +64,11 @@ class ExercisesScreen extends StatelessWidget {
                           Container(
                             margin: const EdgeInsets.all(8),
                             child: GestureDetector(
-                              onTap: () => {},
+                              onTap: () => {
+                                  Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const ExerciseView()) )
+                                },
                               child: Image.asset('assets/exercise-icon5.png',
                                   fit: BoxFit.fill),
                             ),
@@ -72,7 +76,10 @@ class ExercisesScreen extends StatelessWidget {
                           Container(
                             margin: const EdgeInsets.all(8),
                             child: GestureDetector(
-                              onTap: () => {},
+                            onTap: () => {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const ExerciseView()) )},
                               child: Image.asset('assets/exercise-icon4.png',
                                   fit: BoxFit.fill),
                             ),
