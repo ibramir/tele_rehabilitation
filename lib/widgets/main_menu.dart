@@ -4,6 +4,7 @@ import 'package:tele_rehabilitation/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 
+import '../games/audio_manager.dart';
 import 'game_world.dart';
 import '../games/bird_game.dart';
 import '/widgets/settings_menu.dart';
@@ -72,6 +73,7 @@ class MainMenu extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       Flame.device.setPortrait();
+                      AudioManager.instance.stopBgm();
                       runApp(const MyApp());
                     },
                     child: const Text(

@@ -6,6 +6,7 @@ import 'package:tele_rehabilitation/utils/widget_factory.dart';
 import 'package:tele_rehabilitation/widgets/checklist.dart';
 import 'package:tele_rehabilitation/widgets/default_app_bar.dart';
 import 'package:tele_rehabilitation/widgets/main_drawer.dart';
+import 'package:flame/flame.dart';
 
 import '../model/exercise.dart';
 
@@ -97,8 +98,10 @@ class ExercisesScreen extends StatelessWidget {
             button = Container(
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () => {
-                  runApp(BirdRunApp(exercise: e))
+                onTap: () {
+                  Flame.device.fullScreen();
+                  Flame.device.setLandscape();
+                  runApp(BirdRunApp(exercise: e));
                   /*Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -116,10 +119,8 @@ class ExercisesScreen extends StatelessWidget {
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
                 onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ExerciseView(e)))
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ExerciseView(e)))
                 },
                 child:
                     Image.asset('assets/exercise-icon3.png', fit: BoxFit.fill),
@@ -133,10 +134,8 @@ class ExercisesScreen extends StatelessWidget {
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
                 onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ExerciseView(e)))
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ExerciseView(e)))
                 },
                 child:
                     Image.asset('assets/left-elbow-bend.png', fit: BoxFit.fill),
@@ -150,10 +149,8 @@ class ExercisesScreen extends StatelessWidget {
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
                 onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ExerciseView(e)))
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ExerciseView(e)))
                 },
                 child: Image.asset('assets/right-elbow-bend.png',
                     fit: BoxFit.fill),
@@ -167,10 +164,8 @@ class ExercisesScreen extends StatelessWidget {
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
                 onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ExerciseView(e)))
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ExerciseView(e)))
                 },
                 child:
                     Image.asset('assets/exercise-icon1.png', fit: BoxFit.fill),
