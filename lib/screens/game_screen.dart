@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/utils/exercise_controller.dart';
+import 'package:tele_rehabilitation/utils/helpers.dart';
+import 'package:tele_rehabilitation/utils/widget_factory.dart';
 import 'package:tele_rehabilitation/widgets/checklist_card.dart';
 import 'package:tele_rehabilitation/widgets/mainDrawer.dart';
 import '../model/exercise.dart';
@@ -17,16 +19,33 @@ class GameScreen extends StatelessWidget {
         preferredSize: Size.fromHeight(120),
         child: AppBar(
           centerTitle: true,
-          flexibleSpace: ClipRRect(
-            borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(30),
-                bottomLeft: Radius.circular(30)),
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
+          flexibleSpace: FlexibleSpaceBar(
+            centerTitle: false,
+            title: RichText(
+              text: TextSpan(
+                  text: 'It\'s time for...\n',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'din',
+                    fontSize: 20,
+                  ),
+                  children: [
+                    TextSpan(
+                        text: 'Games',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'proxima_ssv',
+                          fontSize: 30,
+                        ))
+                  ]),
+            ),
+            background: Stack(
+              fit: StackFit.expand,
+              children: <Widget>[
+                Image(
                     image: AssetImage('assets/appbar_background.png'),
                     fit: BoxFit.fill),
-              ),
+              ],
             ),
           ),
           title: Text(
@@ -43,11 +62,13 @@ class GameScreen extends StatelessWidget {
       body: Container(
         margin: const EdgeInsets.all(16),
         child: FutureBuilder(
-          future: _controller.getDayExercises(),
+          future: _controller.getAllExercises(),
           builder:
               (BuildContext context, AsyncSnapshot<List<Exercise>> snapshot) {
             if (snapshot.hasData) {
-              return Column(
+              DateTime today = DateTime.now();
+              return SingleChildScrollView(
+                  child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Text('Therapy', textScaleFactor: 1.3),
@@ -68,9 +89,14 @@ class GameScreen extends StatelessWidget {
                         ],
                       )),
                   const Text('Checklist', textScaleFactor: 1.3),
-                  ChecklistCard(exercises: snapshot.data ?? [])
+                  WidgetFactory.card(
+                      child: Checklist(
+                          exercises: (snapshot.data ?? [])
+                              .where((e) => e.date.isSameDate(today))
+                              .toList())),
+                  const Text('History', textScaleFactor: 1.3)
                 ],
-              );
+              ));
             }
 
             return const Center(
@@ -83,3 +109,4 @@ class GameScreen extends StatelessWidget {
     );
   }
 }
+

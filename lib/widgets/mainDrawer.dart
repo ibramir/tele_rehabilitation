@@ -3,6 +3,7 @@ import 'package:tele_rehabilitation/screens/exercises_screen.dart';
 import 'package:tele_rehabilitation/screens/game_screen.dart';
 import 'package:tele_rehabilitation/screens/home_screen.dart';
 import 'package:tele_rehabilitation/screens/contact_screen.dart';
+import 'package:tele_rehabilitation/screens/login_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -104,6 +105,18 @@ class MainDrawer extends StatelessWidget {
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ContactScreen()));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.logout, size: 20),
+            title: Text(
+              'Logout',
+              style: TextStyle(
+                  color: Colors.black, fontFamily: 'din', fontSize: 18),
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
             },
           ),
         ],
