@@ -28,8 +28,13 @@ class MyApp extends StatelessWidget {
             if (snapshot.hasData) {
               return snapshot.data! ? HomeScreen() : const LoginScreen();
             }
-            return const Center(
-              child: Image(image: AssetImage('assets/logo-color.png')),
+            return Container(
+              decoration: const BoxDecoration(color: Colors.white),
+              child: const FractionallySizedBox(
+                alignment: Alignment.center,
+                widthFactor: 0.4,
+                child: Image(image: AssetImage('assets/logo-color.png')),
+              ),
             );
           },
         ));

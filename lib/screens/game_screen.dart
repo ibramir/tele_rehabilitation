@@ -75,8 +75,7 @@ class GameScreen extends StatelessWidget {
                       child: Checklist(
                           exercises: (snapshot.data ?? [])
                               .where((e) => e.date.isSameDate(today))
-                              .toList())),
-                  const Text('History', textScaleFactor: 1.3)
+                              .toList()))
                 ],
               ));
             }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tele_rehabilitation/screens/exercises_screen.dart';
+import 'package:tele_rehabilitation/screens/game_screen.dart';
 import 'package:tele_rehabilitation/utils/auth_service.dart';
 import 'package:tele_rehabilitation/utils/exercise_controller.dart';
 import 'package:tele_rehabilitation/utils/helpers.dart';
@@ -69,7 +71,12 @@ class HomeScreen extends StatelessWidget {
                           Container(
                             margin: const EdgeInsets.all(8),
                             child: GestureDetector(
-                              onTap: () => {},
+                              onTap: () => {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => GameScreen()))
+                              },
                               child: Image.asset('assets/Dashboard-button1.png',
                                   fit: BoxFit.fill),
                             ),
@@ -77,7 +84,12 @@ class HomeScreen extends StatelessWidget {
                           Container(
                             margin: const EdgeInsets.all(8),
                             child: GestureDetector(
-                              onTap: () => {},
+                              onTap: () => {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ExercisesScreen()))
+                              },
                               child: Image.asset('assets/Dashboard-button2.png',
                                   fit: BoxFit.fill),
                             ),

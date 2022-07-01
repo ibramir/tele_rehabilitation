@@ -7,8 +7,9 @@ class ApiClient {
     return _instance;
   }
 
-  final Dio _dio =
-      Dio(BaseOptions(baseUrl: 'https://telerehabapi.herokuapp.com/api/'));
+  final Dio _dio = Dio(BaseOptions(
+      baseUrl: 'https://telerehabapi.herokuapp.com/api',
+      contentType: 'application/json'));
   bool _authToken = false;
 
   ApiClient._();
@@ -25,32 +26,32 @@ class ApiClient {
   }
 
   Future<Response> login(String email, String password) {
-    return _dio.post('login', data: {email, password});
+    return _dio.post('/patient/login', data: {'email': email, 'password': password});
   }
 
   Future<Response> getPatient() {
     _checkAuthToken();
-    return _dio.get('patient/records/getPatient');
+    return _dio.get('/patient/records/getPatient');
   }
 
   Future<Response> getDoctor(String doctorId) {
-    return _dio.get('doctor/getDoctor/id=$doctorId');
+    return _dio.get('/doctor/getDoctor/id=$doctorId');
   }
 
-  Future<Response> getRecords(
-      String historyId, {DateTime? startDate, DateTime? endDate}) {
+  Future<Response> getRecords(String historyId,
+      {DateTime? startDate, DateTime? endDate}) {
     _checkAuthToken();
     String date = '';
     if (startDate != null && endDate != null) {
       date =
           '&gt=${startDate.toIso8601String()}&ls=${endDate.toIso8601String()}';
     }
-    return _dio.get('patient/records/getPatientRecords/id=$historyId$date');
+    return _dio.get('/patient/records/getPatientRecords/id=$historyId$date');
   }
 
   Future<Response> updateRecord(String record, int done) {
     _checkAuthToken();
     return _dio
-        .post('patient/records/updatePatientRecord', data: {record, done});
+        .post('/patient/records/updatePatientRecord', data: {record, done});
   }
 }

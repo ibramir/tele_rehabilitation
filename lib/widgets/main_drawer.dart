@@ -22,16 +22,17 @@ class MainDrawer extends StatelessWidget {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(20),
-            color: Colors.green,
+            color: Theme.of(context).primaryColor,
             child: Center(
               child: Column(
                 children: <Widget>[
+                  const Padding(padding: EdgeInsets.all(14)),
                   CircleAvatar(
                     backgroundColor: Colors.white,
                     child: Text(
                       _getInitials(auth.name),
-                      style: const TextStyle(
-                          color: Color.fromARGB(255, 147, 225, 188),
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor.withAlpha(128),
                           fontFamily: 'proxima_ssv',
                           fontSize: 25),
                     ),
@@ -66,6 +67,7 @@ class MainDrawer extends StatelessWidget {
                   color: Colors.black, fontFamily: 'din', fontSize: 18),
             ),
             onTap: () {
+              Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => HomeScreen()));
             },
@@ -81,6 +83,7 @@ class MainDrawer extends StatelessWidget {
                   color: Colors.black, fontFamily: 'din', fontSize: 18),
             ),
             onTap: () {
+              Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ExercisesScreen()));
             },
@@ -96,6 +99,7 @@ class MainDrawer extends StatelessWidget {
                   color: Colors.black, fontFamily: 'din', fontSize: 18),
             ),
             onTap: () {
+              Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => GameScreen()));
             },
@@ -111,8 +115,9 @@ class MainDrawer extends StatelessWidget {
                   color: Colors.black, fontFamily: 'din', fontSize: 18),
             ),
             onTap: () {
+              Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ContactScreen()));
+                  MaterialPageRoute(builder: (context) => const ContactScreen()));
             },
           ),
           ListTile(

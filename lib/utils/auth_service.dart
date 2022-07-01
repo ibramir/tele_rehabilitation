@@ -44,8 +44,8 @@ class AuthService {
   Future<bool> login(String email, String password) async {
     try {
       Response response = await _apiClient.login(email, password);
-      String authToken = response.data['auth_token'];
-      _initialize(authToken);
+      String authToken = response.data['token'];
+      await _initialize(authToken);
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('authToken', authToken);
       return true;

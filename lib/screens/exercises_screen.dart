@@ -88,8 +88,7 @@ class ExercisesScreen extends StatelessWidget {
                       )),
                   const Text('Checklist', textScaleFactor: 1.3),
                   WidgetFactory.card(
-                      child: Checklist(exercises: (snapshot.data!))),
-                  const Text('History', textScaleFactor: 1.3)
+                      child: Checklist(exercises: (snapshot.data!)))
                 ],
               ));
             }
