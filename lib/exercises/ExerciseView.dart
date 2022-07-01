@@ -1,14 +1,16 @@
 import 'dart:async';
 import 'package:body_detection/models/pose.dart';
 import 'package:flutter/material.dart';
-import 'dart:ui' as ui;
 import 'package:tele_rehabilitation/exercises/verify_pose.dart';
+import 'package:tele_rehabilitation/model/exercise.dart';
 
 import 'pose_mask_painter.dart';
 
 
 class ExerciseView extends StatefulWidget {
-  const ExerciseView({Key? key}) : super(key: key);
+  const ExerciseView(this._exercise, {Key? key}) : super(key: key);
+
+  final Exercise _exercise;
 
   @override
   State<ExerciseView> createState() => _MyAppState();
@@ -16,7 +18,7 @@ class ExerciseView extends StatefulWidget {
 
 class _MyAppState extends State<ExerciseView> {
   Timer? timer;
-  VerifyPose poseVerifier = VerifyPose();
+  late final VerifyPose poseVerifier = VerifyPose(widget._exercise);
 
   int count = 0;
   Pose? _detectedPose;
@@ -86,6 +88,4 @@ class _MyAppState extends State<ExerciseView> {
       ),
     );
   }
-
-
 }

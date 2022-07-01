@@ -90,4 +90,105 @@ class GameScreen extends StatelessWidget {
       drawer: const MainDrawer(),
     );
   }
+
+  /*List<Widget> _getButtons(BuildContext context, List<Exercise>? dayExercises) {
+    List<Widget> ret = [];
+    if (dayExercises == null || dayExercises.isEmpty) {
+      ret.add(const Center(
+        child: Text('No exercises today'),
+      ));
+      return ret;
+    }
+    for (final e in dayExercises) {
+      Widget button;
+      switch (e.type) {
+        case 'Left Arm Stretch':
+          {
+            button = Container(
+              margin: const EdgeInsets.all(8),
+              child: GestureDetector(
+                onTap: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ExerciseView(e)))
+                },
+                child:
+                Image.asset('assets/exercise-icon5.png', fit: BoxFit.fill),
+              ),
+            );
+          }
+          break;
+        case 'Right Arm Stretch':
+          {
+            button = Container(
+              margin: const EdgeInsets.all(8),
+              child: GestureDetector(
+                onTap: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ExerciseView(e)))
+                },
+                child:
+                Image.asset('assets/exercise-icon3.png', fit: BoxFit.fill),
+              ),
+            );
+          }
+          break;
+        case 'Left Elbow Bend':
+          {
+            button = Container(
+              margin: const EdgeInsets.all(8),
+              child: GestureDetector(
+                onTap: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ExerciseView(e)))
+                },
+                child:
+                Image.asset('assets/left-elbow-bend.png', fit: BoxFit.fill),
+              ),
+            );
+          }
+          break;
+        case 'Right Elbow Bend':
+          {
+            button = Container(
+              margin: const EdgeInsets.all(8),
+              child: GestureDetector(
+                onTap: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ExerciseView(e)))
+                },
+                child: Image.asset('assets/right-elbow-bend.png',
+                    fit: BoxFit.fill),
+              ),
+            );
+          }
+          break;
+        default:
+          {
+            button = Container(
+              margin: const EdgeInsets.all(8),
+              child: GestureDetector(
+                onTap: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ExerciseView(e)))
+                },
+                child:
+                Image.asset('assets/exercise-icon1.png', fit: BoxFit.fill),
+              ),
+            );
+          }
+      }
+      ret.add(button);
+    }
+    return ret;
+  }*/
 }

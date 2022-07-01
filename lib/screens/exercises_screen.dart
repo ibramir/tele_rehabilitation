@@ -90,7 +90,6 @@ class ExercisesScreen extends StatelessWidget {
       return ret;
     }
     for (final e in dayExercises) {
-      // TODO pass exercise e to ExerciseView
       Widget button;
       switch (e.type) {
         case 'Left Arm Stretch':
@@ -98,16 +97,12 @@ class ExercisesScreen extends StatelessWidget {
             button = Container(
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () {
-                  // TODO exercise
-                  Future.delayed(const Duration(seconds: 5), () {
-                    e.done++;
-                  });
-                  runApp(BirdRunApp(exercise: e));
+                onTap: () => {
+                  runApp(BirdRunApp(exercise: e))
                   /*Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ExerciseView()))*/
+                          builder: (context) => ExerciseView(e)))*/
                 },
                 child:
                     Image.asset('assets/exercise-icon5.png', fit: BoxFit.fill),
@@ -124,7 +119,7 @@ class ExercisesScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ExerciseView()))
+                          builder: (context) => ExerciseView(e)))
                 },
                 child:
                     Image.asset('assets/exercise-icon3.png', fit: BoxFit.fill),
@@ -141,7 +136,7 @@ class ExercisesScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ExerciseView()))
+                          builder: (context) => ExerciseView(e)))
                 },
                 child:
                     Image.asset('assets/left-elbow-bend.png', fit: BoxFit.fill),
@@ -158,7 +153,7 @@ class ExercisesScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ExerciseView()))
+                          builder: (context) => ExerciseView(e)))
                 },
                 child: Image.asset('assets/right-elbow-bend.png',
                     fit: BoxFit.fill),
@@ -175,7 +170,7 @@ class ExercisesScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ExerciseView()))
+                          builder: (context) => ExerciseView(e)))
                 },
                 child:
                     Image.asset('assets/exercise-icon1.png', fit: BoxFit.fill),

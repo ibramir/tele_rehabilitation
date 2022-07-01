@@ -1,3 +1,4 @@
+import 'package:tele_rehabilitation/exercises/verify_pose.dart';
 import 'package:tele_rehabilitation/games/bird.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
@@ -17,14 +18,15 @@ import '/widgets/game_over_menu.dart';
 
 // This is the main flame game class.
 class BirdGame extends FlameGame with TapDetector, HasCollisionDetection {
-  // TODO remove listener when the game is over
   BirdGame(this._exercise) {
     _exercise.addListener(_listener);
+    _verifyPose = VerifyPose(_exercise);
   }
 
   final Exercise _exercise;
+  late final VerifyPose _verifyPose;
 
-  _listener() {
+  void _listener() {
     _bird.changeDirection();
   }
 
@@ -101,6 +103,7 @@ class BirdGame extends FlameGame with TapDetector, HasCollisionDetection {
     _enemyManager = EnemyManager();
     add(_bird);
     add(_enemyManager);
+    _verifyPose.initPoseVerification();
   }
 
   // This method remove all the actors from the game.
@@ -129,6 +132,8 @@ class BirdGame extends FlameGame with TapDetector, HasCollisionDetection {
       overlays.remove(Game_world.id);
       pauseEngine();
       AudioManager.instance.pauseBgm();
+      _verifyPose.closePoseVerification();
+      _exercise.removeListener(_listener);
     }
     super.update(dt);
   }
