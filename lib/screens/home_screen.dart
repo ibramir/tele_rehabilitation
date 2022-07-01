@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/utils/exercise_controller.dart';
+import 'package:tele_rehabilitation/utils/helpers.dart';
+import 'package:tele_rehabilitation/utils/widget_factory.dart';
 import 'package:tele_rehabilitation/widgets/checklist_card.dart';
 import 'package:tele_rehabilitation/widgets/mainDrawer.dart';
 import '../model/exercise.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+class ExercisesScreen extends StatelessWidget {
+  ExercisesScreen({Key? key}) : super(key: key);
 
   final ExerciseController _controller = ExerciseController();
 
@@ -14,10 +16,13 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFF0F0F0),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(150),
+        preferredSize: Size.fromHeight(120),
         child: AppBar(
           centerTitle: true,
           flexibleSpace: ClipRRect(
+            borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(30),
+                bottomLeft: Radius.circular(30)),
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -30,19 +35,23 @@ class HomeScreen extends StatelessWidget {
             "TeleRehab.",
             style: TextStyle(color: Colors.white, fontFamily: 'proxima_ssv'),
           ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(30),
+                bottomLeft: Radius.circular(30)),
+          ),
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-        ),
         margin: const EdgeInsets.all(16),
         child: FutureBuilder(
-          future: _controller.getDayExercises(),
+          future: _controller.getAllExercises(),
           builder:
               (BuildContext context, AsyncSnapshot<List<Exercise>> snapshot) {
             if (snapshot.hasData) {
-              return Column(
+              DateTime today = DateTime.now();
+              return SingleChildScrollView(
+                  child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Text('Therapy', textScaleFactor: 1.3),
@@ -53,27 +62,32 @@ class HomeScreen extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         children: [
                           Container(
-                            margin: const EdgeInsets.all(12),
+                            margin: const EdgeInsets.all(8),
                             child: GestureDetector(
                               onTap: () => {},
-                              child: Image.asset('assets/Dashboard-button1.png',
+                              child: Image.asset('assets/exercise-icon5.png',
                                   fit: BoxFit.fill),
                             ),
                           ),
                           Container(
-                            margin: const EdgeInsets.all(12),
+                            margin: const EdgeInsets.all(8),
                             child: GestureDetector(
                               onTap: () => {},
-                              child: Image.asset('assets/Dashboard-button2.png',
+                              child: Image.asset('assets/exercise-icon4.png',
                                   fit: BoxFit.fill),
                             ),
-                          ),
+                          )
                         ],
                       )),
-                  const Text('History', textScaleFactor: 1.3),
-                  ChecklistCard(exercises: snapshot.data ?? [])
+                  const Text('Checklist', textScaleFactor: 1.3),
+                  WidgetFactory.card(
+                      child: Checklist(
+                          exercises: (snapshot.data ?? [])
+                              .where((e) => e.date.isSameDate(today))
+                              .toList())),
+                  const Text('History', textScaleFactor: 1.3)
                 ],
-              );
+              ));
             }
 
             return const Center(
@@ -86,3 +100,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
