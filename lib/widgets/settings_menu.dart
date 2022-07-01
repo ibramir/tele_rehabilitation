@@ -14,7 +14,7 @@ class SettingsMenu extends StatelessWidget {
   static const id = 'SettingsMenu';
 
   // Reference to parent game.
-  final Bird_Game gameRef;
+  final BirdGame gameRef;
 
   const SettingsMenu(this.gameRef, {Key? key}) : super(key: key);
 

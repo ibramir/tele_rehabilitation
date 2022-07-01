@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/exercises/ExerciseView.dart';
+import 'package:tele_rehabilitation/game_main.dart';
 import 'package:tele_rehabilitation/utils/exercise_controller.dart';
 import 'package:tele_rehabilitation/utils/widget_factory.dart';
 import 'package:tele_rehabilitation/widgets/checklist.dart';
@@ -97,11 +98,16 @@ class ExercisesScreen extends StatelessWidget {
             button = Container(
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () => {
-                  Navigator.push(
+                onTap: () {
+                  // TODO exercise
+                  Future.delayed(const Duration(seconds: 5), () {
+                    e.done++;
+                  });
+                  runApp(BirdRunApp(exercise: e));
+                  /*Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ExerciseView()))
+                          builder: (context) => const ExerciseView()))*/
                 },
                 child:
                     Image.asset('assets/exercise-icon5.png', fit: BoxFit.fill),

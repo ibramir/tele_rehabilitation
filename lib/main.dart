@@ -1,11 +1,32 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:tele_rehabilitation/screens/home_screen.dart';
 import 'package:tele_rehabilitation/screens/login_screen.dart';
 import 'package:tele_rehabilitation/utils/auth_service.dart';
 
-void main() {
+import 'model/player_data.dart';
+import 'model/settings.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Initializes hive and register the adapters.
+  await initHive();
   runApp(const MyApp());
 }
+
+Future<void> initHive() async {
+  // For web hive does not need to be initialized.
+  if (!kIsWeb) {
+    final dir = await getApplicationDocumentsDirectory();
+    Hive.init(dir.path);
+  }
+
+  Hive.registerAdapter<PlayerData>(PlayerDataAdapter());
+  Hive.registerAdapter<Settings>(SettingsAdapter());
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

@@ -14,7 +14,7 @@ class MainMenu extends StatelessWidget {
   static const id = 'MainMenu';
 
   // Reference to parent game.
-  final Bird_Game gameRef;
+  final BirdGame gameRef;
 
   const MainMenu(this.gameRef, {Key? key}) : super(key: key);
 

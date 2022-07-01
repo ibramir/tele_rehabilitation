@@ -1,14 +1,13 @@
 import 'dart:ui';
 
-import 'package:flame/experimental.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../games/bird_game.dart';
-import 'main_menu.dart';
-import '/model/player_data.dart';
 import '/games/audio_manager.dart';
+import '/model/player_data.dart';
+import '../games/bird_game.dart';
 import 'game_world.dart';
+import 'main_menu.dart';
 
 // This represents the game over overlay,
 // displayed with bird runs out of lives.
@@ -17,7 +16,7 @@ class GameOverMenu extends StatelessWidget {
   static const id = 'GameOverMenu';
 
   // Reference to parent game.
-  final Bird_Game gameRef;
+  final BirdGame gameRef;
 
   const GameOverMenu(this.gameRef, {Key? key}) : super(key: key);
 

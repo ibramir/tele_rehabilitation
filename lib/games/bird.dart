@@ -17,7 +17,7 @@ enum BirdAnimationStates {
 
 // This represents the Bird character of this game.
 class Bird extends SpriteAnimationGroupComponent<BirdAnimationStates>
-    with CollisionCallbacks, HasGameRef<Bird_Game> {
+    with CollisionCallbacks, HasGameRef<BirdGame> {
   // A map of all the animation states and their corresponding animations.
   static final _animationMap = {
     BirdAnimationStates.changeDir: SpriteAnimationData.sequenced(

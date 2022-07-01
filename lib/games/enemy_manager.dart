@@ -8,7 +8,7 @@ import '/model/enemy_data.dart';
 
 // This class is responsible for spawning random enemies at certain
 // interval of time depending upon players current score.
-class EnemyManager extends Component with HasGameRef<Bird_Game> {
+class EnemyManager extends Component with HasGameRef<BirdGame> {
   // A list to hold data for all the enemies.
   final List<EnemyData> _data = [];
 

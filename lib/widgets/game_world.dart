@@ -14,7 +14,7 @@ class Game_world extends StatelessWidget {
   static const id = 'Game_world';
 
   // Reference to parent game.
-  final Bird_Game gameRef;
+  final BirdGame gameRef;
 
   const Game_world(this.gameRef, {Key? key}) : super(key: key);
 

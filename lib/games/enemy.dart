@@ -6,7 +6,7 @@ import '/model/enemy_data.dart';
 
 // This represents an enemy in the game world.
 class Enemy extends SpriteAnimationComponent
-    with CollisionCallbacks, HasGameRef<Bird_Game> {
+    with CollisionCallbacks, HasGameRef<BirdGame> {
   // The data required for creation of this enemy.
   final EnemyData enemyData;
 
