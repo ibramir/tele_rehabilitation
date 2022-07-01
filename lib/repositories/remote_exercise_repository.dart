@@ -24,12 +24,13 @@ class RemoteExerciseRepository extends ExerciseRepository {
   @override
   Future<List<Exercise>> getDayExercises() async {
     DateTime startDate = DateTime.now().dayOnly();
-    DateTime endDate = startDate.addDay();
+    DateTime endDate = startDate.endOfDay();
     return getExercises(startDate, endDate);
   }
 
   @override
-  Future<List<Exercise>> getExercises(DateTime? startDate, DateTime? endDate) async {
+  Future<List<Exercise>> getExercises(
+      DateTime? startDate, DateTime? endDate) async {
     Response response = await _apiClient.getRecords(_historyId,
         startDate: startDate, endDate: endDate);
     List<Map<String, dynamic>> records = response.data['records'];

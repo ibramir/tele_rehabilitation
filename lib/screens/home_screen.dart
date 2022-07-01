@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         margin: const EdgeInsets.all(16),
         child: FutureBuilder(
-          future: _controller.getAllExercises(),
+          future: _controller.fetchWeekExercises(),
           builder:
               (BuildContext context, AsyncSnapshot<List<Exercise>> snapshot) {
             if (snapshot.hasData) {
@@ -88,7 +88,8 @@ class HomeScreen extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ExercisesScreen()))
+                                        builder: (context) =>
+                                            ExercisesScreen()))
                               },
                               child: Image.asset('assets/Dashboard-button2.png',
                                   fit: BoxFit.fill),

@@ -86,7 +86,7 @@ class GameScreen extends StatelessWidget {
           },
         ),
       ),
-      drawer: MainDrawer(),
+      drawer: const MainDrawer(),
     );
   }
 }
