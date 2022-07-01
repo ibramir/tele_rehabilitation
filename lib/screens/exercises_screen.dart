@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/utils/exercise_controller.dart';
-import 'package:tele_rehabilitation/utils/helpers.dart';
 import 'package:tele_rehabilitation/utils/widget_factory.dart';
-import 'package:tele_rehabilitation/widgets/checklist_card.dart';
-import 'package:tele_rehabilitation/widgets/mainDrawer.dart';
+import 'package:tele_rehabilitation/widgets/checklist.dart';
+import 'package:tele_rehabilitation/widgets/default_app_bar.dart';
+import 'package:tele_rehabilitation/widgets/main_drawer.dart';
+
 import '../model/exercise.dart';
 
 class ExercisesScreen extends StatelessWidget {
@@ -14,59 +15,41 @@ class ExercisesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF0F0F0),
+      backgroundColor: const Color(0xFFF0F0F0),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(120),
-        child: AppBar(
-          centerTitle: true,
-          flexibleSpace: FlexibleSpaceBar(
-            centerTitle: false,
-            title: RichText(
-              text: TextSpan(
-                  text: 'let\'s do some...,\n',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'din',
-                    fontSize: 20,
+        preferredSize: const Size.fromHeight(120),
+        child: DefaultAppBar(
+          title: RichText(
+            text: const TextSpan(
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                children: [
+                  TextSpan(
+                    text: 'Let\'s do some...\n',
+                    style: TextStyle(
+                        fontFamily: 'din',
+                        fontSize: 20,
+                        fontStyle: FontStyle.italic),
                   ),
-                  children: [
-                    TextSpan(
-                        text: 'Exercises',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'proxima_ssv',
-                          fontSize: 30,
-                        ))
-                  ]),
-            ),
-            background: Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-                Image(
-                    image: AssetImage('assets/appbar_background.png'),
-                    fit: BoxFit.fill),
-              ],
-            ),
-          ),
-          title: Text(
-            "TeleRehab.",
-            style: TextStyle(color: Colors.white, fontFamily: 'proxima_ssv'),
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(30),
-                bottomLeft: Radius.circular(30)),
+                  TextSpan(
+                      text: 'Exercises',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'proxima_ssv',
+                        fontSize: 30,
+                      ))
+                ]),
           ),
         ),
       ),
       body: Container(
         margin: const EdgeInsets.all(16),
         child: FutureBuilder(
-          future: _controller.getAllExercises(),
+          future: _controller.getDayExercises(),
           builder:
               (BuildContext context, AsyncSnapshot<List<Exercise>> snapshot) {
             if (snapshot.hasData) {
-              DateTime today = DateTime.now();
               return SingleChildScrollView(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,10 +81,7 @@ class ExercisesScreen extends StatelessWidget {
                       )),
                   const Text('Checklist', textScaleFactor: 1.3),
                   WidgetFactory.card(
-                      child: Checklist(
-                          exercises: (snapshot.data ?? [])
-                              .where((e) => e.date.isSameDate(today))
-                              .toList())),
+                      child: Checklist(exercises: (snapshot.data!))),
                   const Text('History', textScaleFactor: 1.3)
                 ],
               ));
@@ -113,7 +93,7 @@ class ExercisesScreen extends StatelessWidget {
           },
         ),
       ),
-      drawer: MainDrawer(),
+      drawer: const MainDrawer(),
     );
   }
 }

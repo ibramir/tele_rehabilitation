@@ -15,7 +15,11 @@ class Histogram extends StatelessWidget {
           data: progressList,
           colorFn: (_, __) => const Color(r: 155, g: 210, b: 170),
           domainFn: (DayProgress e, _) => DateFormat.E().format(e.date),
-          measureFn: (DayProgress e, _) => e.done / e.count * 100)
+          measureFn: (DayProgress e, _) {
+            var v = e.done / e.count;
+            v = v > 1.0 ? 1.0 : v;
+            return v * 100;
+          })
     ];
   }
 

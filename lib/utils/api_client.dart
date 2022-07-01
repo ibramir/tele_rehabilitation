@@ -13,9 +13,9 @@ class ApiClient {
 
   ApiClient._();
 
-  set authKey(String authToken) {
+  set authToken(String authToken) {
     _dio.options.headers['auth_token'] = authToken;
-    _authToken = true;
+    _authToken = authToken.isNotEmpty;
   }
 
   void _checkAuthToken() {

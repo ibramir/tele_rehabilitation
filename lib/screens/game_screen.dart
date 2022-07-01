@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/utils/exercise_controller.dart';
 import 'package:tele_rehabilitation/utils/helpers.dart';
 import 'package:tele_rehabilitation/utils/widget_factory.dart';
-import 'package:tele_rehabilitation/widgets/checklist_card.dart';
-import 'package:tele_rehabilitation/widgets/mainDrawer.dart';
+import 'package:tele_rehabilitation/widgets/checklist.dart';
+import 'package:tele_rehabilitation/widgets/default_app_bar.dart';
+import 'package:tele_rehabilitation/widgets/main_drawer.dart';
 import '../model/exercise.dart';
 
 class GameScreen extends StatelessWidget {
@@ -14,22 +15,22 @@ class GameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF0F0F0),
+      backgroundColor: const Color(0xFFF0F0F0),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(120),
-        child: AppBar(
-          centerTitle: true,
-          flexibleSpace: FlexibleSpaceBar(
-            centerTitle: false,
+          preferredSize: const Size.fromHeight(120),
+          child: DefaultAppBar(
             title: RichText(
-              text: TextSpan(
-                  text: 'It\'s time for...\n',
+              text: const TextSpan(
                   style: TextStyle(
                     color: Colors.white,
-                    fontFamily: 'din',
-                    fontSize: 20,
                   ),
                   children: [
+                    TextSpan(
+                        text: 'It\'s time for...\n',
+                        style: TextStyle(
+                          fontFamily: 'din',
+                          fontSize: 20,
+                        )),
                     TextSpan(
                         text: 'Games',
                         style: TextStyle(
@@ -39,26 +40,7 @@ class GameScreen extends StatelessWidget {
                         ))
                   ]),
             ),
-            background: Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-                Image(
-                    image: AssetImage('assets/appbar_background.png'),
-                    fit: BoxFit.fill),
-              ],
-            ),
-          ),
-          title: Text(
-            "TeleRehab.",
-            style: TextStyle(color: Colors.white, fontFamily: 'proxima_ssv'),
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(30),
-                bottomLeft: Radius.circular(30)),
-          ),
-        ),
-      ),
+          )),
       body: Container(
         margin: const EdgeInsets.all(16),
         child: FutureBuilder(
@@ -109,4 +91,3 @@ class GameScreen extends StatelessWidget {
     );
   }
 }
-
