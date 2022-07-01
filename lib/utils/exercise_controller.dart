@@ -22,4 +22,7 @@ class ExerciseController {
     return _repository.getAllExercises();
   }
 
+  Future<List<Exercise>> getExercises(DateTime startDate, DateTime endDate) {
+    return _repository.getExercises(startDate, endDate);
+  }
 }

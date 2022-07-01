@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/widgets/progress_bar.dart';
 
 import '../model/exercise.dart';
-import '../utils/widget_factory.dart';
 
-class ChecklistCard extends StatelessWidget {
-  const ChecklistCard({Key? key, required this.exercises}) : super(key: key);
+class Checklist extends StatelessWidget {
+  const Checklist({Key? key, required this.exercises}) : super(key: key);
 
   final List<Exercise> exercises;
 
@@ -19,8 +18,11 @@ class ChecklistCard extends StatelessWidget {
       done = 1;
       for (final exercise in exercises) {
         double value = exercise.done / exercise.count;
+        if (value > 1.0) {
+          value = 1.0;
+        }
         progress[exercise.id] = value;
-        if (value != 1.0) done = 0;
+        if (value < 1.0) done = 0;
       }
     }
 
@@ -55,27 +57,25 @@ class ChecklistCard extends StatelessWidget {
       cardContent.add(ProgressBar(value: progressValue, height: 14.0));
     }
 
-    return WidgetFactory.card(
-        child: Container(
-            padding: const EdgeInsets.all(16),
-            width: double.infinity,
-            child:
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              RichText(
-                  text: TextSpan(children: <TextSpan>[
-                    const TextSpan(
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 16),
-                        text: 'Today\'s Goal '),
-                    progressText
-                  ])),
-              Container(
-                  padding: const EdgeInsets.all(8),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: cardContent))
-            ])));
+    return Container(
+        padding: const EdgeInsets.all(16),
+        width: double.infinity,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          RichText(
+              text: TextSpan(children: <TextSpan>[
+            const TextSpan(
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 16),
+                text: 'Today\'s Goal '),
+            progressText
+          ])),
+          Container(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: cardContent))
+        ]));
   }
 }

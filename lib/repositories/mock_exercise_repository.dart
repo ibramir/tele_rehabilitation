@@ -24,13 +24,13 @@ class MockExerciseRepository extends ExerciseRepository {
       Exercise('5', today.subtract(const Duration(days: 3)), 'Left Leg Stretch',
           10, 5),
       Exercise('6', today.subtract(const Duration(days: 4)),
-          'Right Leg Stretch', 6, 10),
+          'Right Leg Stretch', 10, 6),
       Exercise('7', today.subtract(const Duration(days: 5)), 'Left Leg Stretch',
           10, 7),
       Exercise('8', today.subtract(const Duration(days: 6)),
           'Right Leg Stretch', 10, 4),
-      Exercise('9', today.subtract(const Duration(days: 7)),
-          'Right Leg Stretch', 10, 9),
+      /*Exercise('9', today.subtract(const Duration(days: 7)),
+          'Right Leg Stretch', 10, 9),*/
     ];
   }
 
@@ -48,5 +48,10 @@ class MockExerciseRepository extends ExerciseRepository {
   Future<void> update(Exercise exercise) async {
     int i = _exercises.indexWhere((element) => element.id == exercise.id);
     _exercises[i] = exercise;
+  }
+
+  @override
+  Future<List<Exercise>> getExercises(DateTime startDate, DateTime endDate) async {
+    return _exercises.where((e) => e.date.compareTo(startDate) >= 0 && e.date.compareTo(endDate) <= 0).toList();
   }
 }
