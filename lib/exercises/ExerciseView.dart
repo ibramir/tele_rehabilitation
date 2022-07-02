@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/exercises/verify_pose.dart';
 import 'package:tele_rehabilitation/model/exercise.dart';
 
+import '../widgets/default_app_bar.dart';
 import 'pose_mask_painter.dart';
 
 
@@ -45,11 +46,7 @@ class _MyAppState extends State<ExerciseView> {
     setState(() {
       _cameraImage = poseVerifier.image;
       _imageSize = poseVerifier.size;
-    });
-    setState(() {
       _detectedPose = poseVerifier.pose;
-    });
-    setState(() {
       count = poseVerifier.count;
     });
   }
@@ -69,8 +66,16 @@ class _MyAppState extends State<ExerciseView> {
                   ),
                 ),
                 ),
-
-              Text(count.toString(), textAlign: TextAlign.left),
+              const SizedBox(height: 70),
+              Text(
+                count.toString()+ '/'+ widget._exercise.count.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontWeight: FontWeight. bold,
+                    fontSize: 40,
+                    fontFamily: 'proxima_ssv'),
+                )
+              ,
             ],
           ),
         ),
@@ -81,7 +86,15 @@ class _MyAppState extends State<ExerciseView> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Exercises Screen'),
+          backgroundColor: Theme.of(context).primaryColor,
+          title: Text(
+                 widget._exercise.type,
+                 style: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'proxima_ssv',
+                  fontSize: 25,
+                ),
+              ),
         ),
         body: _cameraDetectionView,
 
