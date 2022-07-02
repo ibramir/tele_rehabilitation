@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/exercises/ExerciseView.dart';
-import 'package:tele_rehabilitation/game_main.dart';
 import 'package:tele_rehabilitation/utils/exercise_controller.dart';
 import 'package:tele_rehabilitation/utils/widget_factory.dart';
 import 'package:tele_rehabilitation/widgets/checklist.dart';
 import 'package:tele_rehabilitation/widgets/default_app_bar.dart';
 import 'package:tele_rehabilitation/widgets/main_drawer.dart';
-import 'package:flame/flame.dart';
 
 import '../model/exercise.dart';
 
@@ -98,14 +96,11 @@ class ExercisesScreen extends StatelessWidget {
             button = Container(
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () {
-                  Flame.device.fullScreen();
-                  Flame.device.setLandscape();
-                  runApp(BirdRunApp(exercise: e));
-                  /*Navigator.push(
+                onTap: () => {
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ExerciseView(e)))*/
+                          builder: (context) => ExerciseView(e)))
                 },
                 child:
                     Image.asset('assets/exercise-icon5.png', fit: BoxFit.fill),

@@ -1,11 +1,12 @@
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/utils/exercise_controller.dart';
-import 'package:tele_rehabilitation/utils/helpers.dart';
 import 'package:tele_rehabilitation/utils/widget_factory.dart';
 import 'package:tele_rehabilitation/widgets/checklist.dart';
 import 'package:tele_rehabilitation/widgets/default_app_bar.dart';
 import 'package:tele_rehabilitation/widgets/main_drawer.dart';
 
+import '../game_main.dart';
 import '../model/exercise.dart';
 
 class GameScreen extends StatelessWidget {
@@ -45,11 +46,10 @@ class GameScreen extends StatelessWidget {
       body: Container(
         margin: const EdgeInsets.all(16),
         child: FutureBuilder(
-          future: _controller.getAllExercises(),
+          future: _controller.fetchDayExercises(),
           builder:
               (BuildContext context, AsyncSnapshot<List<Exercise>> snapshot) {
             if (snapshot.hasData) {
-              DateTime today = DateTime.now();
               return SingleChildScrollView(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,23 +60,11 @@ class GameScreen extends StatelessWidget {
                       child: ListView(
                         clipBehavior: Clip.none,
                         scrollDirection: Axis.horizontal,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.all(8),
-                            child: GestureDetector(
-                              onTap: () => {},
-                              child: Image.asset('assets/game-icon.png',
-                                  fit: BoxFit.fill),
-                            ),
-                          ),
-                        ],
+                        children: _getButtons(context, snapshot.data!),
                       )),
                   const Text('Checklist', textScaleFactor: 1.3),
                   WidgetFactory.card(
-                      child: Checklist(
-                          exercises: (snapshot.data ?? [])
-                              .where((e) => e.date.isSameDate(today))
-                              .toList()))
+                      child: Checklist(exercises: snapshot.data!))
                 ],
               ));
             }
@@ -91,7 +79,7 @@ class GameScreen extends StatelessWidget {
     );
   }
 
-  /*List<Widget> _getButtons(BuildContext context, List<Exercise>? dayExercises) {
+  List<Widget> _getButtons(BuildContext context, List<Exercise>? dayExercises) {
     List<Widget> ret = [];
     if (dayExercises == null || dayExercises.isEmpty) {
       ret.add(const Center(
@@ -107,14 +95,13 @@ class GameScreen extends StatelessWidget {
             button = Container(
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ExerciseView(e)))
+                onTap: () {
+                  Flame.device.fullScreen();
+                  Flame.device.setLandscape();
+                  runApp(BirdRunApp(exercise: e));
                 },
                 child:
-                Image.asset('assets/exercise-icon5.png', fit: BoxFit.fill),
+                    Image.asset('assets/exercise-icon5.png', fit: BoxFit.fill),
               ),
             );
           }
@@ -124,14 +111,13 @@ class GameScreen extends StatelessWidget {
             button = Container(
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ExerciseView(e)))
+                onTap: () {
+                  Flame.device.fullScreen();
+                  Flame.device.setLandscape();
+                  runApp(BirdRunApp(exercise: e));
                 },
                 child:
-                Image.asset('assets/exercise-icon3.png', fit: BoxFit.fill),
+                    Image.asset('assets/exercise-icon3.png', fit: BoxFit.fill),
               ),
             );
           }
@@ -141,14 +127,13 @@ class GameScreen extends StatelessWidget {
             button = Container(
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ExerciseView(e)))
+                onTap: () {
+                  Flame.device.fullScreen();
+                  Flame.device.setLandscape();
+                  runApp(BirdRunApp(exercise: e));
                 },
                 child:
-                Image.asset('assets/left-elbow-bend.png', fit: BoxFit.fill),
+                    Image.asset('assets/left-elbow-bend.png', fit: BoxFit.fill),
               ),
             );
           }
@@ -158,11 +143,10 @@ class GameScreen extends StatelessWidget {
             button = Container(
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ExerciseView(e)))
+                onTap: () {
+                  Flame.device.fullScreen();
+                  Flame.device.setLandscape();
+                  runApp(BirdRunApp(exercise: e));
                 },
                 child: Image.asset('assets/right-elbow-bend.png',
                     fit: BoxFit.fill),
@@ -175,14 +159,13 @@ class GameScreen extends StatelessWidget {
             button = Container(
               margin: const EdgeInsets.all(8),
               child: GestureDetector(
-                onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ExerciseView(e)))
+                onTap: () {
+                  Flame.device.fullScreen();
+                  Flame.device.setLandscape();
+                  runApp(BirdRunApp(exercise: e));
                 },
                 child:
-                Image.asset('assets/exercise-icon1.png', fit: BoxFit.fill),
+                    Image.asset('assets/exercise-icon1.png', fit: BoxFit.fill),
               ),
             );
           }
@@ -190,5 +173,5 @@ class GameScreen extends StatelessWidget {
       ret.add(button);
     }
     return ret;
-  }*/
+  }
 }

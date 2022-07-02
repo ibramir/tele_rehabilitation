@@ -1,7 +1,6 @@
 import 'package:tele_rehabilitation/exercises/verify_pose.dart';
 import 'package:tele_rehabilitation/games/bird.dart';
 import 'package:flame/game.dart';
-import 'package:flame/input.dart';
 import 'package:hive/hive.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ import '/widgets/pause_menu.dart';
 import '/widgets/game_over_menu.dart';
 
 // This is the main flame game class.
-class BirdGame extends FlameGame with TapDetector, HasCollisionDetection {
+class BirdGame extends FlameGame with HasCollisionDetection {
   BirdGame(this._exercise) {
     _exercise.addListener(_listener);
     _verifyPose = VerifyPose(_exercise);
@@ -137,17 +136,6 @@ class BirdGame extends FlameGame with TapDetector, HasCollisionDetection {
     }
     super.update(dt);
   }
-
-  // This will get called for each tap on the screen.
-  /*@override
-  void onTapDown(TapDownInfo info) {
-    // Make Bird jump only when game is playing.
-    // When game is in playing state, only Hud will be the active overlay.
-    if (overlays.isActive(Game_world.id)) {
-      _bird.changeDirection();
-    }
-    super.onTapDown(info);
-  }*/
 
   /// This method reads [PlayerData] from the hive box.
   Future<PlayerData> _readPlayerData() async {
