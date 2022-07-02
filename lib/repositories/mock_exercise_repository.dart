@@ -33,17 +33,17 @@ class MockExerciseRepository extends ExerciseRepository {
       Exercise('12', today.subtract(const Duration(days: 6)),
           'Right Arm Stretch', 20, 4),
       Exercise('13', today.add(const Duration(days: 1)),
-          'Right Arm Stretch', 20, 1),
+          'Right Arm Stretch', 20, 0),
       Exercise('14', today.add(const Duration(days: 2)),
-          'Right Arm Stretch', 20, 19),
+          'Right Arm Stretch', 20, 0),
       Exercise('15', today.add(const Duration(days: 3)),
-          'Right Arm Stretch', 20, 11),
+          'Right Arm Stretch', 20, 0),
       Exercise('16', today.add(const Duration(days: 4)),
-          'Right Arm Stretch', 20, 10),
+          'Right Arm Stretch', 20, 0),
       Exercise('17', today.add(const Duration(days: 5)),
-          'Right Arm Stretch', 20, 20),
+          'Right Arm Stretch', 20, 0),
       Exercise('18', today.add(const Duration(days: 6)),
-          'Right Arm Stretch', 20, 12),
+          'Right Arm Stretch', 20, 0),
     ];
   }
 
