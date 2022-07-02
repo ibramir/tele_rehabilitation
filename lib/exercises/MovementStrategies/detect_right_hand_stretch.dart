@@ -1,21 +1,26 @@
-import 'package:tele_rehabilitation/exercises/MovementStrategy.dart';
 import 'package:body_detection/models/pose_landmark.dart';
 import 'package:body_detection/models/pose.dart';
-import 'CalcAngle.dart';
+import 'package:tele_rehabilitation/exercises/movement_strategy.dart';
+import 'calc_angle.dart';
+class DetectRightHandStretch extends MovementStrategy {
 
-class DetectRightElbowBend extends MovementStrategy{
 
   @override
   bool validate(Pose selectedBody) {
 
     bool isMovementValid = false;
+
     PoseLandmark rightShoulderJoint = selectedBody.landmarks.elementAt(11);
     PoseLandmark rightElbowJoint = selectedBody.landmarks.elementAt(13);
     PoseLandmark rightWristJoint = selectedBody.landmarks.elementAt(15);
+    PoseLandmark rightHipJoint = selectedBody.landmarks.elementAt(23);
 
     double rightElbowAngle =  CalcAngle.getAngle(rightShoulderJoint, rightElbowJoint, rightWristJoint);
+    double rightArmpitAngle =  CalcAngle.getAngle(rightWristJoint, rightShoulderJoint, rightHipJoint);
 
-    if (rightElbowAngle > 80  && rightElbowAngle < 100  )
+
+    if (rightElbowAngle > 120  &&
+        rightArmpitAngle > 50 && rightArmpitAngle < 110  )
     {
       isMovementValid = true;
     }
@@ -24,7 +29,12 @@ class DetectRightElbowBend extends MovementStrategy{
       isMovementValid = false;
     }
 
+
     return isMovementValid;
 
   }
+
 }
+
+
+

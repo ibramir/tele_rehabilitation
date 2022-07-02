@@ -9,14 +9,14 @@ import '/widgets/pause_menu.dart';
 // This represents the head up display in game.
 // It consists of, current score, high score,
 // a pause button and number of remaining lives.
-class Game_world extends StatelessWidget {
+class GameWorld extends StatelessWidget {
   // An unique identified for this overlay.
   static const id = 'Game_world';
 
   // Reference to parent game.
   final BirdGame gameRef;
 
-  const Game_world(this.gameRef, {Key? key}) : super(key: key);
+  const GameWorld(this.gameRef, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class Game_world extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                gameRef.overlays.remove(Game_world.id);
+                gameRef.overlays.remove(GameWorld.id);
                 gameRef.overlays.add(PauseMenu.id);
                 gameRef.pauseEngine();
                 AudioManager.instance.pauseBgm();

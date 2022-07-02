@@ -1,8 +1,9 @@
-import 'package:tele_rehabilitation/exercises/MovementStrategy.dart';
+import 'package:tele_rehabilitation/exercises/movement_strategy.dart';
 import 'package:body_detection/models/pose_landmark.dart';
 import 'package:body_detection/models/pose.dart';
-import 'CalcAngle.dart';
-class DetectLeftHandStretch extends MovementStrategy{
+import 'calc_angle.dart';
+
+class DetectLeftElbowBend extends MovementStrategy{
 
   @override
   bool validate(Pose selectedBody) {
@@ -12,14 +13,11 @@ class DetectLeftHandStretch extends MovementStrategy{
     PoseLandmark leftShoulderJoint = selectedBody.landmarks.elementAt(12);
     PoseLandmark leftElbowJoint = selectedBody.landmarks.elementAt(14);
     PoseLandmark leftWristJoint = selectedBody.landmarks.elementAt(16);
-    PoseLandmark leftHipJoint = selectedBody.landmarks.elementAt(24);
 
     double leftElbowAngle = CalcAngle.getAngle(leftShoulderJoint, leftElbowJoint, leftWristJoint);
-    double leftArmpitAngle = CalcAngle.getAngle(leftWristJoint, leftShoulderJoint, leftHipJoint);
 
 
-    if (leftElbowAngle > 130  &&
-        leftArmpitAngle > 60  &&leftArmpitAngle < 110  )
+    if (leftElbowAngle > 80  && leftElbowAngle < 100  )
     {
       isMovementValid = true;
     }

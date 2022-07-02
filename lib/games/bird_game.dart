@@ -128,7 +128,7 @@ class BirdGame extends FlameGame with HasCollisionDetection {
     // If number of lives is 0 or less, game is over.
     if (playerData.lives <= 0) {
       overlays.add(GameOverMenu.id);
-      overlays.remove(Game_world.id);
+      overlays.remove(GameWorld.id);
       pauseEngine();
       AudioManager.instance.pauseBgm();
       _verifyPose.closePoseVerification();
@@ -187,8 +187,8 @@ class BirdGame extends FlameGame with HasCollisionDetection {
       case AppLifecycleState.inactive:
         // If game is active, then remove Hud and add PauseMenu
         // before pausing the game.
-        if (overlays.isActive(Game_world.id)) {
-          overlays.remove(Game_world.id);
+        if (overlays.isActive(GameWorld.id)) {
+          overlays.remove(GameWorld.id);
           overlays.add(PauseMenu.id);
         }
         pauseEngine();

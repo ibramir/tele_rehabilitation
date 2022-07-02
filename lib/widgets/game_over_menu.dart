@@ -64,7 +64,7 @@ class GameOverMenu extends StatelessWidget {
                       ),
                       onPressed: () {
                         gameRef.overlays.remove(GameOverMenu.id);
-                        gameRef.overlays.add(Game_world.id);
+                        gameRef.overlays.add(GameWorld.id);
                         gameRef.resumeEngine();
                         gameRef.reset();
                         gameRef.startGamePlay();

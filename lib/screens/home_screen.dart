@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/screens/exercises_screen.dart';
 import 'package:tele_rehabilitation/screens/game_screen.dart';
 import 'package:tele_rehabilitation/utils/auth_service.dart';
-import 'package:tele_rehabilitation/utils/exercise_controller.dart';
+import 'package:tele_rehabilitation/repositories/exercise/exercise_repository.dart';
 import 'package:tele_rehabilitation/utils/helpers.dart';
 import 'package:tele_rehabilitation/utils/widget_factory.dart';
 import 'package:tele_rehabilitation/widgets/checklist.dart';
@@ -14,7 +14,7 @@ import '../model/exercise.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  final ExerciseController _controller = ExerciseController();
+  final ExerciseRepository _controller = ExerciseRepository();
 
   @override
   Widget build(BuildContext context) {

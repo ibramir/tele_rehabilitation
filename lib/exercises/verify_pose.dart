@@ -4,12 +4,12 @@ import 'dart:async';
 import 'package:body_detection/body_detection.dart';
 
 import 'package:permission_handler/permission_handler.dart';
-import 'package:tele_rehabilitation/exercises/MovementStrategies/DetectBothHandRaise.dart';
-import 'package:tele_rehabilitation/exercises/MovementStrategies/DetectLeftElbowBend.dart';
-import 'package:tele_rehabilitation/exercises/MovementStrategies/DetectLeftHandStretch.dart';
-import 'package:tele_rehabilitation/exercises/MovementStrategies/DetectRightElbowBend.dart';
-import 'package:tele_rehabilitation/exercises/MovementStrategies/DetectRightHandStretch.dart';
-import 'package:tele_rehabilitation/exercises/MovementStrategy.dart';
+import 'package:tele_rehabilitation/exercises/MovementStrategies/detect_both_hand_raise.dart';
+import 'package:tele_rehabilitation/exercises/MovementStrategies/detect_left_elbow_bend.dart';
+import 'package:tele_rehabilitation/exercises/MovementStrategies/detect_left_hand_stretch.dart';
+import 'package:tele_rehabilitation/exercises/MovementStrategies/detect_right_elbow_bend.dart';
+import 'package:tele_rehabilitation/exercises/MovementStrategies/detect_right_hand_stretch.dart';
+import 'package:tele_rehabilitation/exercises/movement_strategy.dart';
 import 'package:flutter/material.dart';
 import 'package:body_detection/models/image_result.dart';
 import 'dart:ui' as ui;

@@ -56,7 +56,7 @@ class PauseMenu extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         gameRef.overlays.remove(PauseMenu.id);
-                        gameRef.overlays.add(Game_world.id);
+                        gameRef.overlays.add(GameWorld.id);
                         gameRef.resumeEngine();
                         AudioManager.instance.resumeBgm();
                       },
@@ -70,7 +70,7 @@ class PauseMenu extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         gameRef.overlays.remove(PauseMenu.id);
-                        gameRef.overlays.add(Game_world.id);
+                        gameRef.overlays.add(GameWorld.id);
                         gameRef.resumeEngine();
                         gameRef.reset();
                         gameRef.startGamePlay();

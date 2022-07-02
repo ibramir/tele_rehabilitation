@@ -1,10 +1,10 @@
 import 'dart:async';
+
 import 'package:body_detection/models/pose.dart';
 import 'package:flutter/material.dart';
 import 'package:tele_rehabilitation/exercises/verify_pose.dart';
 import 'package:tele_rehabilitation/model/exercise.dart';
 
-import '../widgets/default_app_bar.dart';
 import 'pose_mask_painter.dart';
 
 
@@ -31,7 +31,7 @@ class _MyAppState extends State<ExerciseView> {
   void initState() {
     super.initState();
     poseVerifier.initPoseVerification();
-    timer = Timer.periodic(Duration(milliseconds: 10), (Timer t) => checkState());
+    timer = Timer.periodic(const Duration(milliseconds: 10), (Timer t) => checkState());
 
   }
 

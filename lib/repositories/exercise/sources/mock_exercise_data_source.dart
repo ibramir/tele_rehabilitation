@@ -1,17 +1,17 @@
 import 'package:tele_rehabilitation/model/exercise.dart';
-import 'package:tele_rehabilitation/repositories/exercise_repository.dart';
+import 'package:tele_rehabilitation/repositories/exercise/sources/exercise_data_source.dart';
 
-class MockExerciseRepository extends ExerciseRepository {
-  static final MockExerciseRepository _instance = MockExerciseRepository._();
+class MockExerciseDataSource extends ExerciseDataSource {
+  static final MockExerciseDataSource _instance = MockExerciseDataSource._();
 
-  factory MockExerciseRepository() {
+  factory MockExerciseDataSource() {
     return _instance;
   }
 
   late final List<Exercise> _exercises;
   late final DateTime today;
 
-  MockExerciseRepository._() {
+  MockExerciseDataSource._() {
     today = DateTime.now();
 
     _exercises = [

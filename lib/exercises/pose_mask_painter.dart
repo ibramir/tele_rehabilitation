@@ -1,10 +1,9 @@
 import 'dart:ui' as ui;
-import 'dart:developer';
-import 'package:flutter/widgets.dart';
-import 'package:tele_rehabilitation/exercises/MovementStrategy.dart';
-import 'package:body_detection/models/pose_landmark.dart';
+
 import 'package:body_detection/models/pose.dart';
+import 'package:body_detection/models/pose_landmark.dart';
 import 'package:body_detection/models/pose_landmark_type.dart';
+import 'package:flutter/widgets.dart';
 class PoseMaskPainter extends CustomPainter {
   PoseMaskPainter({
     required this.pose,

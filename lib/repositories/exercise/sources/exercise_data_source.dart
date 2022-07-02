@@ -1,6 +1,6 @@
 import 'package:tele_rehabilitation/model/exercise.dart';
 
-abstract class ExerciseRepository {
+abstract class ExerciseDataSource {
   Future<List<Exercise>> getDayExercises();
 
   Future<void> update(Exercise exercise);

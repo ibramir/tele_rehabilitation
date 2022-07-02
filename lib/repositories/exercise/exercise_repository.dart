@@ -1,21 +1,21 @@
-import 'package:tele_rehabilitation/repositories/exercise_repository.dart';
-import 'package:tele_rehabilitation/repositories/mock_exercise_repository.dart';
+import 'package:tele_rehabilitation/repositories/exercise/sources/exercise_data_source.dart';
+import 'package:tele_rehabilitation/repositories/exercise/sources/mock_exercise_data_source.dart';
 import 'package:tele_rehabilitation/utils/helpers.dart';
 
-import '../model/exercise.dart';
+import '../../model/exercise.dart';
 
-class ExerciseController {
-  static final ExerciseController _instance = ExerciseController._();
+class ExerciseRepository {
+  static final ExerciseRepository _instance = ExerciseRepository._();
 
-  factory ExerciseController() {
+  factory ExerciseRepository() {
     return _instance;
   }
 
-  ExerciseController._() {
-    _repository = MockExerciseRepository();
+  ExerciseRepository._() {
+    _dataSource = MockExerciseDataSource();
   }
 
-  late final ExerciseRepository _repository;
+  late final ExerciseDataSource _dataSource;
   List<Exercise>? _dayExercises;
 
   Future<List<Exercise>> fetchWeekExercises() async {
@@ -38,20 +38,20 @@ class ExerciseController {
     if (_dayExercises != null) {
       return _dayExercises!;
     }
-    List<Exercise> ret = await _repository.getDayExercises();
+    List<Exercise> ret = await _dataSource.getDayExercises();
     _dayExercises = ret;
     return ret;
   }
 
   Future<void> update(Exercise exercise) {
-    return _repository.update(exercise);
+    return _dataSource.update(exercise);
   }
 
   Future<List<Exercise>> getAllExercises() {
-    return _repository.getAllExercises();
+    return _dataSource.getAllExercises();
   }
 
   Future<List<Exercise>> getExercises(DateTime startDate, DateTime endDate) {
-    return _repository.getExercises(startDate, endDate);
+    return _dataSource.getExercises(startDate, endDate);
   }
 }

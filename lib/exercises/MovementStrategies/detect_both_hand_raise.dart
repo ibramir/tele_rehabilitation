@@ -1,7 +1,7 @@
-import 'package:tele_rehabilitation/exercises/MovementStrategy.dart';
+import 'package:tele_rehabilitation/exercises/movement_strategy.dart';
 import 'package:body_detection/models/pose_landmark.dart';
 import 'package:body_detection/models/pose.dart';
-import 'CalcAngle.dart';
+import 'calc_angle.dart';
 
 class DetectBothHandRaise extends MovementStrategy{
 
@@ -11,19 +11,15 @@ class DetectBothHandRaise extends MovementStrategy{
     bool isMovementValid = false;
 
     PoseLandmark leftShoulderJoint = selectedBody.landmarks.elementAt(11);
-    PoseLandmark leftElbowJoint = selectedBody.landmarks.elementAt(13);
     PoseLandmark leftWristJoint = selectedBody.landmarks.elementAt(15);
     PoseLandmark leftHipJoint = selectedBody.landmarks.elementAt(23);
 
-    double leftElbowAngle = CalcAngle.getAngle(leftShoulderJoint, leftElbowJoint, leftWristJoint);
     double leftArmpitAngle = CalcAngle.getAngle(leftWristJoint, leftShoulderJoint, leftHipJoint);
 
     PoseLandmark rightShoulderJoint = selectedBody.landmarks.elementAt(12);
-    PoseLandmark rightElbowJoint = selectedBody.landmarks.elementAt(14);
     PoseLandmark rightWristJoint = selectedBody.landmarks.elementAt(16);
     PoseLandmark rightHipJoint = selectedBody.landmarks.elementAt(24);
 
-    double rightElbowAngle =  CalcAngle.getAngle(rightShoulderJoint, rightElbowJoint, rightWristJoint);
     double rightArmpitAngle =  CalcAngle.getAngle(rightWristJoint, rightShoulderJoint, rightHipJoint);
 
     PoseLandmark noseJoint  = selectedBody.landmarks.elementAt(0);

@@ -49,7 +49,7 @@ class MainMenu extends StatelessWidget {
                     onPressed: () {
                       gameRef.startGamePlay();
                       gameRef.overlays.remove(MainMenu.id);
-                      gameRef.overlays.add(Game_world.id);
+                      gameRef.overlays.add(GameWorld.id);
                     },
                     child: const Text(
                       'Play',

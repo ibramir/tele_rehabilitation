@@ -1,14 +1,14 @@
 import 'package:tele_rehabilitation/model/exercise.dart';
-import 'package:tele_rehabilitation/repositories/exercise_repository.dart';
+import 'package:tele_rehabilitation/repositories/exercise/sources/exercise_data_source.dart';
 
-class LocalExerciseRepository extends ExerciseRepository {
-  static final LocalExerciseRepository _instance = LocalExerciseRepository._();
+class LocalExerciseDataSource extends ExerciseDataSource {
+  static final LocalExerciseDataSource _instance = LocalExerciseDataSource._();
 
-  factory LocalExerciseRepository() {
+  factory LocalExerciseDataSource() {
     return _instance;
   }
 
-  LocalExerciseRepository._();
+  LocalExerciseDataSource._();
 
   @override
   Future<List<Exercise>> getAllExercises() {

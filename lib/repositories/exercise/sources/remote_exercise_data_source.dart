@@ -1,22 +1,22 @@
 import 'package:dio/dio.dart';
 import 'package:tele_rehabilitation/model/exercise.dart';
-import 'package:tele_rehabilitation/repositories/exercise_repository.dart';
+import 'package:tele_rehabilitation/repositories/exercise/sources/exercise_data_source.dart';
 import 'package:tele_rehabilitation/utils/api_client.dart';
 import 'package:tele_rehabilitation/utils/helpers.dart';
 
-class RemoteExerciseRepository extends ExerciseRepository {
-  static late final RemoteExerciseRepository _instance;
+class RemoteExerciseDataSource extends ExerciseDataSource {
+  static late final RemoteExerciseDataSource _instance;
 
-  factory RemoteExerciseRepository() {
+  factory RemoteExerciseDataSource() {
     return _instance;
   }
 
-  factory RemoteExerciseRepository.initialize(String historyId) {
-    _instance = RemoteExerciseRepository._(historyId);
+  factory RemoteExerciseDataSource.initialize(String historyId) {
+    _instance = RemoteExerciseDataSource._(historyId);
     return _instance;
   }
 
-  RemoteExerciseRepository._(this._historyId);
+  RemoteExerciseDataSource._(this._historyId);
 
   late final String _historyId;
   final ApiClient _apiClient = ApiClient();

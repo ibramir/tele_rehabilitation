@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tele_rehabilitation/exercises/ExerciseView.dart';
-import 'package:tele_rehabilitation/utils/exercise_controller.dart';
+import 'package:tele_rehabilitation/exercises/exercise_view.dart';
+import 'package:tele_rehabilitation/repositories/exercise/exercise_repository.dart';
 import 'package:tele_rehabilitation/utils/widget_factory.dart';
 import 'package:tele_rehabilitation/widgets/checklist.dart';
 import 'package:tele_rehabilitation/widgets/default_app_bar.dart';
@@ -11,7 +11,7 @@ import '../model/exercise.dart';
 class ExercisesScreen extends StatelessWidget {
   ExercisesScreen({Key? key}) : super(key: key);
 
-  final ExerciseController _controller = ExerciseController();
+  final ExerciseRepository _controller = ExerciseRepository();
 
   @override
   Widget build(BuildContext context) {

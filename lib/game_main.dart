@@ -9,9 +9,6 @@ import 'widgets/settings_menu.dart';
 import 'widgets/game_over_menu.dart';
 import 'games/bird_game.dart';
 
-/// This is the single instance of [BirdGame] which
-/// will be reused throughout the lifecycle of the game.
-//BirdGame _game = BirdGame();
 
 // The main widget for this game.
 class BirdRunApp extends StatelessWidget {
@@ -50,7 +47,7 @@ class BirdRunApp extends StatelessWidget {
           overlayBuilderMap: {
             MainMenu.id: (_, BirdGame gameRef) => MainMenu(gameRef),
             PauseMenu.id: (_, BirdGame gameRef) => PauseMenu(gameRef),
-            Game_world.id: (_, BirdGame gameRef) => Game_world(gameRef),
+            GameWorld.id: (_, BirdGame gameRef) => GameWorld(gameRef),
             GameOverMenu.id: (_, BirdGame gameRef) => GameOverMenu(gameRef),
             SettingsMenu.id: (_, BirdGame gameRef) => SettingsMenu(gameRef),
           },
